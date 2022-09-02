@@ -4,7 +4,7 @@ let lwrcaseChar = ["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o",
 let upprcaseChar = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 let numbrChar = ["0","1","2","3","4","5","6","7","8","9"]
 let spclChar = ["!","”","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<",">","=","?","@","[","]","^","_","`","{","|","}","~"]
-let allOptions = [lwrcaseChar + upprcaseChar + numbrChar + spclChar]
+// let allOptions = []
 
 
 // Write password to the #password input
@@ -18,30 +18,34 @@ function writePassword() {
 
 function generatePassword(){
     let lengthNeed = window.prompt("How many characters should the password be? Min 8")
-    // console.log(lengthNeed)
+    // lengthNeed = parseInt(lengthNeed)
     let password = ""
     
     if (lengthNeed >=8 && lengthNeed <=128) {
+        // build array of options first
+        // 
         
-        
-        for (let i = 8; i < 128; i++) {
+        for (let i = 0; i < lengthNeed; i++) {
             let passwordFrame = Math.floor(Math.random()*lwrcaseChar.length)
+            // console.log(passwordFrame)
             let mightWork = lwrcaseChar[passwordFrame];
-            password=+ "mightWork";
+            // console.log (mightWork)
+            password+= mightWork;
             console.log(password)
         
         }
         return password
         
-    } else if (!lengthNeed){
-        return "Nothing Selected";
+    } 
+    // else if (!lengthNeed){
+    //     return "Nothing Selected";
         
 
 
-    } else {
-        window.alert("needs a min of 8 and a max of 128");
-        generatePassword()
-    }
+    // } else {
+    //     window.alert("needs a min of 8 and a max of 128");
+    //     generatePassword()
+    // }
 
    // let lowercase = window.confirm("Should the password include lowercase characters?");
     // let uppercase = window.confirm("Should the password include uppercase characters?");

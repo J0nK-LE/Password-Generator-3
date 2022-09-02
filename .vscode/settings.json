@@ -6,5 +6,6 @@
         "numbr",
         "spcl",
         "upprcase"
-    ]
+    ],
+    "liveServer.settings.port": 5502
 }
