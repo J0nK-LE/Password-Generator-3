@@ -1,10 +1,10 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
-const lwrcaseChar = ["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-const upprcaseChar = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-const numbrChar = ["0","1","2","3","4","5","6","7","8","9"]
-const spclChar = ["!","”","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<",">","=","?","@","[","]","^","_","`","{","|","}","~"]
-
+let lwrcaseChar = ["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+let upprcaseChar = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+let numbrChar = ["0","1","2","3","4","5","6","7","8","9"]
+let spclChar = ["!","”","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<",">","=","?","@","[","]","^","_","`","{","|","}","~"]
+let allOptions = [lwrcaseChar + upprcaseChar + numbrChar + spclChar]
 
 
 // Write password to the #password input
@@ -17,21 +17,41 @@ function writePassword() {
 }
 
 function generatePassword(){
-    let charLength = window.prompt("How many characters should the password be? Min 8")
-    console.log(charLength)
-
-    if (!charLength){
-        return "Nothing Selected";
-    }
-        if (charLength < 8){
-            window.alert("C'mon have at least 8")
-            generatePassword()
-        }else if (charLength > 128);{
-            window.alert("I doubt you could remember more than 128");
-            generatePassword()
+    let lengthNeed = window.prompt("How many characters should the password be? Min 8")
+    // console.log(lengthNeed)
+    let password = ""
+    
+    if (lengthNeed >=8 && lengthNeed <=128) {
+        
+        
+        for (let i = 8; i < 128; i++) {
+            let passwordFrame = Math.floor(Math.random()*lwrcaseChar.length)
+            let mightWork = lwrcaseChar[passwordFrame];
+            password=+ "mightWork";
+            console.log(password)
+        
         }
+        return password
+        
+    } else if (!lengthNeed){
+        return "Nothing Selected";
+        
 
-    return passwordText
+
+    } else {
+        window.alert("needs a min of 8 and a max of 128");
+        generatePassword()
+    }
+
+   // let lowercase = window.confirm("Should the password include lowercase characters?");
+    // let uppercase = window.confirm("Should the password include uppercase characters?");
+    // let numeric = window.confirm("Should the password include numeric characters?");
+    // let special = window.confirm("Should the password include special characters?");
+
+   
+
+
+
 }
 
 // Add event listener to generate button
