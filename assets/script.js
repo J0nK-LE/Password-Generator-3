@@ -26,8 +26,8 @@ function generatePassword(){
     let password = ""
     console.log("lower prompt " + lowercase)
     console.log("upper prompt " + uppercase)
-    console.log("upper prompt " + numeric)
-    console.log("upper prompt " + special)
+    console.log("numeric prompt " + numeric)
+    console.log("special prompt " + special)
     console.log("lowercase char in array " + allOptions.includes(lwrcaseChar))
     console.log("uppercase char in array " + allOptions.includes(upprcaseChar))
     console.log("number char in array " + allOptions.includes(numbrChar))
@@ -38,13 +38,36 @@ function generatePassword(){
     if (lengthNeed >=8 && lengthNeed <=128) {
         // build array of options first
         
-        
+        // if (lowercase) {
+        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+            
+        //  } else {
+        //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+        //  }
+
+        // if (uppercase) {
+        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+            
+        // } else {
+        //     let allOptions =  [lwrcaseChar && !upprcaseChar && numbrChar && spclChar]
+        // }
+        // if (numeric) {
+        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+            
+        // } else {
+        //     let allOptions =  [lwrcaseChar && upprcaseChar && !numbrChar && spclChar]
+        // }
+        // if (special) {
+        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+            
+        // } else {
+        //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+        // }
         for (let i = 0; i < lengthNeed; i++) {
             let passwordFrame = Math.floor(Math.random()*allOptions.length)
             // console.log(passwordFrame)
-            let mightWork = allOptions[passwordFrame];
-            // console.log (mightWork)
-            password+= mightWork;
+            let finalResult = allOptions[passwordFrame];
+            password+= finalResult;
             // console.log(password)
             
         }
