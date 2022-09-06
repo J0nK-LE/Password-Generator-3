@@ -1,93 +1,109 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
-let lwrcaseChar = ["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-let upprcaseChar = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-let numbrChar = ["0","1","2","3","4","5","6","7","8","9"]
-let spclChar = ["!","”","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<",">","=","?","@","[","]","^","_","`","{","|","}","~"]
-let allOptions = [...lwrcaseChar, ...upprcaseChar, ...numbrChar, ...spclChar]
+let lwrcaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let upprcaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+let numbrChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+let spclChar = ["!", "”", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"]
+
+let allOptions = []
 
 
 // Write password to the #password input
 function writePassword() {
     let password = generatePassword();
     let passwordText = document.querySelector("#password");
-    
+
     passwordText.value = password;
-    
+
 }
 
-function generatePassword(){
+function generatePassword() {
     let lowercase = window.confirm("Should the password include lowercase characters?");
     let uppercase = window.confirm("Should the password include uppercase characters?");
     let numeric = window.confirm("Should the password include numeric characters?");
     let special = window.confirm("Should the password include special characters?");
-    let lengthNeed = window.prompt("How many characters should the password be? Min 8")
-    // lengthNeed = parseInt(lengthNeed)
-    let password = ""
-    console.log("lower prompt " + lowercase)
-    console.log("upper prompt " + uppercase)
-    console.log("numeric prompt " + numeric)
-    console.log("special prompt " + special)
-    console.log("lowercase char in array " + allOptions.includes(lwrcaseChar))
-    console.log("uppercase char in array " + allOptions.includes(upprcaseChar))
-    console.log("number char in array " + allOptions.includes(numbrChar))
-    console.log("special char in array " + allOptions.includes(spclChar))
- 
+    allOptions = []
+
+    // console.log("lower prompt " + lowercase)
+    // console.log("upper prompt " + uppercase)
+    // console.log("numeric prompt " + numeric)
+    // console.log("special prompt " + special)
+    // console.log("lowercase char in array " + allOptions.includes(lwrcaseChar))
+    // console.log("uppercase char in array " + allOptions.includes(upprcaseChar))
+    // console.log("number char in array " + allOptions.includes(numbrChar))
+    // console.log("special char in array " + allOptions.includes(spclChar))
     
     
-    if (lengthNeed >=8 && lengthNeed <=128) {
-        // build array of options first
-        
-        // if (lowercase) {
-        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-            
-        //  } else {
+    // build array of options first
+    
+    if (lowercase) {
+        allOptions.push(lwrcaseChar)
+        //  allOptions.concat(lwrcaseChar)
+        console.log("lowercase ", allOptions, lwrcaseChar)
+    }
+    //  } else {
         //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
         //  }
-
-        // if (uppercase) {
-        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-            
-        // } else {
+        
+    if (uppercase) {
+        allOptions.push(upprcaseChar)
+        console.log("upper ", allOptions)
+    }
+    // } else {
         //     let allOptions =  [lwrcaseChar && !upprcaseChar && numbrChar && spclChar]
         // }
-        // if (numeric) {
-        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-            
+        if (numeric) {
+            allOptions.push(numbrChar)
+            console.log("number ", allOptions)
+        }
         // } else {
-        //     let allOptions =  [lwrcaseChar && upprcaseChar && !numbrChar && spclChar]
-        // }
-        // if (special) {
-        //     let allOptions =  [lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-            
-        // } else {
-        //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-        // }
+            //     let allOptions =  [lwrcaseChar && upprcaseChar && !numbrChar && spclChar]
+            // }
+            if (special) {
+                allOptions.push(spclChar)
+                console.log("special ", allOptions)
+            }
+            // } else {
+                //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
+                // }
+                console.log(allOptions)
+                if (allOptions.length === 0) {
+                    return "Choose at least one"
+                }
+                
+                let lengthNeed = window.prompt("How many characters should the password be? Min 8")
+                lengthNeed = parseInt(lengthNeed)
+                let password = ""
+                
+                if (lengthNeed >= 8 && lengthNeed <= 128) {
         for (let i = 0; i < lengthNeed; i++) {
-            let passwordFrame = Math.floor(Math.random()*allOptions.length)
+            let row = Math.floor(Math.random() * allOptions.length)
+            let passwordFrame = Math.floor(Math.random() * allOptions[row].length)
             // console.log(passwordFrame)
-            let finalResult = allOptions[passwordFrame];
-            password+= finalResult;
+            let finalResult = allOptions[row][passwordFrame];
+            password += finalResult;
             // console.log(password)
-            
+
         }
         return password
-        
-    } 
+
+    } else {
+        return "Invalid Length"
+    }
     // else if (!lengthNeed){
-        //     return "Nothing Selected";
-        
-        
-        
-        // } else {
-            //     window.alert("needs a min of 8 and a max of 128");
-            //     generatePassword()
-            // }
-            
-             
-    
-    
-    
+    //     return "Nothing Selected";
+
+
+
+    // } else {
+    //     window.alert("needs a min of 8 and a max of 128");
+    //     generatePassword()
+    // }
+
+
+
+
+
 }
 
 // Add event listener to generate button
