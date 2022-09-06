@@ -28,82 +28,56 @@ function generatePassword() {
     // console.log("upper prompt " + uppercase)
     // console.log("numeric prompt " + numeric)
     // console.log("special prompt " + special)
-    // console.log("lowercase char in array " + allOptions.includes(lwrcaseChar))
-    // console.log("uppercase char in array " + allOptions.includes(upprcaseChar))
-    // console.log("number char in array " + allOptions.includes(numbrChar))
-    // console.log("special char in array " + allOptions.includes(spclChar))
-    
-    
-    // build array of options first
-    
+  
     if (lowercase) {
         allOptions.push(lwrcaseChar)
         //  allOptions.concat(lwrcaseChar)
         console.log("lowercase ", allOptions, lwrcaseChar)
     }
-    //  } else {
-        //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-        //  }
-        
+         
     if (uppercase) {
         allOptions.push(upprcaseChar)
         console.log("upper ", allOptions)
     }
-    // } else {
-        //     let allOptions =  [lwrcaseChar && !upprcaseChar && numbrChar && spclChar]
-        // }
-        if (numeric) {
-            allOptions.push(numbrChar)
-            console.log("number ", allOptions)
-        }
-        // } else {
-            //     let allOptions =  [lwrcaseChar && upprcaseChar && !numbrChar && spclChar]
-            // }
-            if (special) {
-                allOptions.push(spclChar)
-                console.log("special ", allOptions)
-            }
-            // } else {
-                //     let allOptions =  [!lwrcaseChar && upprcaseChar && numbrChar && spclChar]
-                // }
-                console.log(allOptions)
-                if (allOptions.length === 0) {
-                    return "Choose at least one"
-                }
+
+    if (numeric) {
+        allOptions.push(numbrChar)
+        console.log("number ", allOptions)
+    }
+
+    if (special) {
+        allOptions.push(spclChar)
+        console.log("special ", allOptions)
+    }
+
+    console.log(allOptions)
+    
+    if (allOptions.length === 0) {
+        return "At least one set of characters must be chosen"
+    }
                 
-                let lengthNeed = window.prompt("How many characters should the password be? Min 8")
-                lengthNeed = parseInt(lengthNeed)
-                let password = ""
-                
-                if (lengthNeed >= 8 && lengthNeed <= 128) {
+    let lengthNeed = window.prompt("How many characters should the password be? Min 8 Max 128")
+    
+    lengthNeed = parseInt(lengthNeed)
+    
+    let password = ""
+    
+    if (lengthNeed >= 8 && lengthNeed <= 128) {
+    
         for (let i = 0; i < lengthNeed; i++) {
             let row = Math.floor(Math.random() * allOptions.length)
             let passwordFrame = Math.floor(Math.random() * allOptions[row].length)
             // console.log(passwordFrame)
             let finalResult = allOptions[row][passwordFrame];
             password += finalResult;
-            // console.log(password)
-
+           // console.log(password)
         }
         return password
 
     } else {
-        return "Invalid Length"
+        return "Needs a Min of 8 and a max of 128"
     }
-    // else if (!lengthNeed){
-    //     return "Nothing Selected";
-
-
-
-    // } else {
-    //     window.alert("needs a min of 8 and a max of 128");
-    //     generatePassword()
-    // }
-
-
-
-
-
+  
 }
 
 // Add event listener to generate button
@@ -111,12 +85,12 @@ generateBtn.addEventListener("click", writePassword);
 
 
 // steps
-// prompt 1 - length of characters
-// prompt() - text box let them fill out number of chars
 //character types
     // confirm()1 - lowercase
-    //confirm()2 - uppercase
+    // confirm()2 - uppercase
     // confirm()3 - numeric
     // confirm()4 - special chars
+// prompt 1 - length of characters
+    // prompt() - text box let them fill out number of chars
 // generate password
 // display password
